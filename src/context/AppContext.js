@@ -10,16 +10,15 @@ export const AppContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
-  useEffect(() => {
-    fetchBlogPosts(pageCount);
-  }, [pageCount]);
 
-  const fetchBlogPosts = async (pageCount) => {
+  const fetchBlogPosts = async () => {
     setLoading(true);
     try {
-      let url = `${baseUrl}?pages=${pageCount}`;
+      let url = `${baseUrl}?page=${pageCount}`;
       toast.success("Fetching Data...");
       const response = await axios.get(url);
+
+      //
       setPageCount(response.data.page);
       setPosts(response.data.posts);
       setTotalPages(response.data.totalPages);

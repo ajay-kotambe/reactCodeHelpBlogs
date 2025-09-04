@@ -4,11 +4,11 @@ import Spinner from "./Spinner";
 import Card from "./Card";
 
 const Blogs = () => {
-  const { loading, posts, fetchBlogPosts } = useContext(AppContext);
+  const { loading, posts, fetchBlogPosts, pageCount } = useContext(AppContext);
   useEffect(() => {
     fetchBlogPosts();
     // eslint-disable-next-line
-  }, []);
+  }, [pageCount]);
 
   return (
     <div>
