@@ -4,20 +4,23 @@ import "./Card.css";
 
 const Card = ({ post }) => {
   return (
-    <div>
-      <h4 className="title">{post.title}</h4>
-      <div>
-        By <span>{post.author}</span> on <span>{post.category}</span>
+    <div className="card-container">
+      <div className="card">
+        <h4 className="title">{post.title}</h4>
+        <span className="author-n-category">
+          By <i className="author">{post.author}</i> on{" "}
+          <span className="category">{post.category}</span>
+        </span>
+        <div className="date">
+          Posted On <span>{post.date}</span>
+        </div>
+        <p>{post.content}</p>
+        <p>
+          {post.tags.map((tag, index) => (
+            <Tags tag={tag} key={index} />
+          ))}
+        </p>
       </div>
-      <div>
-        Posted on <span>{post.date}</span>
-      </div>
-      <p>{post.content}</p>
-      <p>
-        {post.tags.map((tag, index) => (
-          <Tags tag={tag} key={index} />
-        ))}
-      </p>
     </div>
   );
 };

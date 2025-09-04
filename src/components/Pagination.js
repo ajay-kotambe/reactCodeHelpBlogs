@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import "./Pagination.css"
 
 const Pagination = () => {
   const { pageCount, totalPages, handlePageChange } = useContext(AppContext);
   return (
-    <div>
+    <div className="footer">
       <div>
         {pageCount > 1 && (
           <button

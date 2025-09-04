@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { baseUrl } from "../baseUrl";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -15,7 +15,6 @@ export const AppContextProvider = ({ children }) => {
     setLoading(true);
     try {
       let url = `${baseUrl}?page=${pageCount}`;
-      toast.success("Fetching Data...");
       const response = await axios.get(url);
 
       //
