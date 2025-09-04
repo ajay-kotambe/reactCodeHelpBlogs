@@ -15,7 +15,9 @@ const Blogs = () => {
       {loading ? (
         <Spinner />
       ) : posts.length === 0 ? (
-        <div>Posts Not Found..!</div>
+        <h2 style={{ textAlign: "center", color: "red" }}>
+          404 Posts Not Found..!
+        </h2>
       ) : (
         posts.map((post) => <Card post={post} key={post.id} />)
       )}
