@@ -7,6 +7,7 @@ const Blogs = () => {
   const { loading, posts, fetchBlogPosts } = useContext(AppContext);
   useEffect(() => {
     fetchBlogPosts();
+    // eslint-disable-next-line
   }, []);
 
   return (
