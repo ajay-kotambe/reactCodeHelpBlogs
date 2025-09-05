@@ -1,0 +1,10 @@
+.tagPage-container {
+  flex-direction: row;
+  justify-items: center;
+}
+.heading-container {
+  display: flex;
+  align-items: center; /* vertically align */
+  justify-content: center; /* center the whole group horizontally */
+  gap: 12px;
+}

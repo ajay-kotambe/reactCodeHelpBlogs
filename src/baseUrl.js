@@ -1,3 +1,3 @@
 export const baseUrl = "https://codehelp-apis.vercel.app/api/get-blogs";
 
-// https://codehelp-apis.vercel.app/api/get-blogs?page=1&tag=Python
+// https://codehelp-apis.vercel.app/api/get-blogs?blogId=BLOG100

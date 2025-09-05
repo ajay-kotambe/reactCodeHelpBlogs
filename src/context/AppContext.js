@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { baseUrl } from "../baseUrl";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
@@ -10,18 +11,19 @@ export const AppContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+  const navigate = useNavigate();
 
-  const fetchBlogPosts = async (page, tag = null, category) => {
+  const fetchBlogPosts = async (page = 1, tag = null, category) => {
     setLoading(true);
     try {
       let url = `${baseUrl}?page=${page}`;
-      const response = await axios.get(url);
       if (tag) {
         url += `&tag=${tag}`;
       }
       if (category) {
         url += `&category=${category}`;
       }
+      const response = await axios.get(url);
 
       //
       setPageCount(response.data.page);
@@ -37,7 +39,8 @@ export const AppContextProvider = ({ children }) => {
   };
 
   function handlePageChange(page) {
-    fetchBlogPosts(page);
+    // fetchBlogPosts(page);
+    navigate({ search: `?pages=${page}` });
     setPageCount(page);
   }
 

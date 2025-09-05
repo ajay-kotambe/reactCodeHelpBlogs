@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { baseUrl } from "../baseUrl";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
+import "./BlogPage.css";
 
 const BlogPage = () => {
   const { loading, setLoading } = useContext(AppContext);
@@ -17,12 +17,14 @@ const BlogPage = () => {
   const blogId = location.pathname.split("/").at(-1);
 
   const fetchRelatedBlogs = async () => {
+    const newBaseUrl = "https://codehelp-apis.vercel.app/api/";
     setLoading(true);
-    let url = `${baseUrl}?blogId=${blogId}`;
+    let url = `${newBaseUrl}get-blog?blogId=${blogId}`;
 
     try {
       const res = await axios.get(url);
       setBlog(res.data.blog);
+      console.log(res.data.blog);
       setRelatedBlogs(res.data.relatedBlogs);
     } catch (error) {
       toast.error("Error ocuured while fetching blogs");
@@ -38,17 +40,19 @@ const BlogPage = () => {
   }, [location.pathname]);
 
   return (
-    <div>
+    <div className="blogpage-container">
       <Header />
       <div>
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button onClick={() => navigate(-1)} className="back-btn">
+          Back
+        </button>
 
         {loading ? (
           <Spinner />
         ) : blog ? (
           <div>
             <Card post={blog} />
-            <h2>Related Blogs</h2>
+            <h2 className="relatedBlogs">Related Blogs</h2>
             {relatedBlogs.map((post) => (
               <Card post={post} key={post.id} />
             ))}
