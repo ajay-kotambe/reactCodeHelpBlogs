@@ -11,11 +11,17 @@ export const AppContextProvider = ({ children }) => {
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
 
-  const fetchBlogPosts = async () => {
+  const fetchBlogPosts = async (page, tag = null, category) => {
     setLoading(true);
     try {
-      let url = `${baseUrl}?page=${pageCount}`;
+      let url = `${baseUrl}?page=${page}`;
       const response = await axios.get(url);
+      if (tag) {
+        url += `&tag=${tag}`;
+      }
+      if (category) {
+        url += `&category=${category}`;
+      }
 
       //
       setPageCount(response.data.page);
@@ -31,6 +37,7 @@ export const AppContextProvider = ({ children }) => {
   };
 
   function handlePageChange(page) {
+    fetchBlogPosts(page);
     setPageCount(page);
   }
 

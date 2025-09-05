@@ -19,14 +19,19 @@
   bottom: 0;
   left: 0;
   width: 98%;
-  display: flex;
-  justify-content: space-around; /* buttons on left, page info on right */
+  justify-items: center; /* buttons on left, page info on right */
   align-items: center;
   padding: 10px 20px; /* adds breathing space on both sides */
   /* color: white; */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
   color: black;
   background-color: white;
+}
+.footer-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 550px;
 }
 
 .previous-btn,
